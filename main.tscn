@@ -71,14 +71,21 @@ __meta__ = {
 }
 
 [node name="GameOver" parent="CanvasLayer" instance=ExtResource( 5 )]
+margin_left = 1.37805
+margin_top = 1.52588e-05
+margin_right = 1.37805
 
 [node name="Pause" parent="CanvasLayer" instance=ExtResource( 6 )]
+margin_left = 1.37805
+margin_top = 4.13428
+margin_right = 1.37805
+margin_bottom = 4.13428
 
 [node name="Background" type="TextureRect" parent="."]
-margin_left = -43.5304
-margin_top = -73.3798
-margin_right = 5707.47
-margin_bottom = 3797.62
+margin_left = -44.0
+margin_top = -73.0
+margin_right = 5707.0
+margin_bottom = 3798.0
 rect_scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 7 )
 stretch_mode = 1

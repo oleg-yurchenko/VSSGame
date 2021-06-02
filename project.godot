@@ -19,11 +19,6 @@ config/name="VSSGame"
 run/main_scene="res://Menu.tscn"
 config/icon="res://icon.png"
 
-[display]
-
-window/size/resizable=false
-window/size/fullscreen=true
-
 [input]
 
 left={

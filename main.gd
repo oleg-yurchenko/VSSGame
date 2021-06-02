@@ -14,19 +14,19 @@ var coin
 func _on_coin_touch(body):
 	if body.name == "Player":
 		score += 1
-		coin.position = Vector2(rand_range(64, 960), rand_range(64, 544))
+		coin.position = Vector2(rand_range(64, OS.get_real_window_size().x-64), rand_range(64, OS.get_real_window_size().y-64))
 		$CanvasLayer/Panel/Score.text = str(score)
 
 func instance_enemy(enemy):
 	var choice = randi()%4
 	if(choice == 0):
-		enemy.position = Vector2(rand_range(-32, 1056), -32)
+		enemy.position = Vector2(rand_range(-32, OS.get_real_window_size().x+32), -32)
 	if(choice == 1):
-		enemy.position = Vector2(1056, rand_range(-32, 640))
+		enemy.position = Vector2(OS.get_real_window_size().x+32, rand_range(-32, OS.get_real_window_size().y+32))
 	if(choice == 2):
-		enemy.position = Vector2(rand_range(-32, 1056), 640)
+		enemy.position = Vector2(rand_range(-32, OS.get_real_window_size().x+32), OS.get_real_window_size().y+32)
 	if(choice == 3):
-		enemy.position = Vector2(-32, rand_range(-32, 640))
+		enemy.position = Vector2(-32, rand_range(-32, OS.get_real_window_size().y+32))
 	enemy.startPos = choice
 	add_child(enemy)
 
@@ -41,7 +41,7 @@ func _ready():
 	
 	preCoin = preload("res://Coin.tscn")
 	coin = preCoin.instance()
-	coin.position = Vector2(rand_range(64, 960), rand_range(64, 544))
+	coin.position = Vector2(rand_range(64, OS.get_real_window_size().x-64), rand_range(64, OS.get_real_window_size().y-64))
 	add_child(coin)
 	$CanvasLayer/GameOver.visible = false
 	$CanvasLayer/Pause.visible = false
@@ -49,8 +49,10 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	$CanvasLayer.scale = (OS.get_real_window_size() / Vector2(1024, 640))
+	$Background.rect_scale = (OS.get_real_window_size() / Vector2(1024, 640)) * 0.2
 	for i in range(enemies.size()):
-		if(is_instance_valid(enemies[i]) and (enemies[i].position.x < -32 or enemies[i].position.x > 1056 or enemies[i].position.y < -32 or enemies[i].position.y > 640)):
+		if(is_instance_valid(enemies[i]) and (enemies[i].position.x < -32 or enemies[i].position.x > OS.get_real_window_size().x+32 or enemies[i].position.y < -32 or enemies[i].position.y > OS.get_real_window_size().y+32)):
 			enemiesToFree.append(i)
 		if(not is_instance_valid(enemies[i])):
 			preEnemies[i] = load("res://Enemy.tscn")
