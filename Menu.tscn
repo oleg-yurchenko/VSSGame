@@ -1,0 +1,62 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Menu.gd" type="Script" id=1]
+
+[sub_resource type="DynamicFontData" id=1]
+font_path = "res://joystix monospace.ttf"
+
+[sub_resource type="DynamicFont" id=2]
+size = 26
+font_data = SubResource( 1 )
+
+[sub_resource type="DynamicFontData" id=3]
+font_path = "res://joystix monospace.ttf"
+
+[sub_resource type="DynamicFont" id=4]
+size = 22
+font_data = SubResource( 3 )
+
+[node name="Menu" type="Control"]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Title" type="Label" parent="CanvasLayer"]
+margin_left = 331.126
+margin_top = 108.879
+margin_right = 683.126
+margin_bottom = 140.879
+custom_fonts/font = SubResource( 2 )
+text = "Dodge the Robots"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StartGame" type="Button" parent="CanvasLayer"]
+margin_left = 447.613
+margin_top = 179.051
+margin_right = 549.613
+margin_bottom = 212.051
+custom_fonts/font = SubResource( 4 )
+text = "Start"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ExitGame" type="Button" parent="CanvasLayer"]
+margin_left = 448.735
+margin_top = 236.296
+margin_right = 550.735
+margin_bottom = 269.296
+custom_fonts/font = SubResource( 4 )
+text = "Exit"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="CanvasLayer/StartGame" to="." method="_on_StartGame_pressed"]
+[connection signal="pressed" from="CanvasLayer/ExitGame" to="." method="_on_ExitGame_pressed"]
